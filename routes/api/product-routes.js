@@ -40,12 +40,12 @@ router.get('/:id', async (req, res) => {
 // create new product
 router.post('/', async (req, res) => {
   /* req.body should look like this...*/
-  const newProduct = {
+  const newProduct = JSON.Stringify({
         product_name: "Basketball",
         price: 200.00,
         stock: 3,
         tagIds: [1, 2, 3, 4],
-        } = req.body
+        }) = req.body
       await Product.create(req.body)
       res.json(newProduct)
     
