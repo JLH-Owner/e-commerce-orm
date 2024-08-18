@@ -9,7 +9,7 @@
 - [LINKS](#LINKS)
 
 ## Description
-This application is designed to allow the user to Manager Product Inventory 
+This application is designed to allow the user to Manage Product Inventory 
 
 ## Installation 
 Watch the live demo for full instructions on how to create, run and manage this application. Run NPM install, locally. Create Database in your terminal via PostgreSQL. Run Seeds with Node.js, then continue with the application via Insomnia. 
@@ -27,7 +27,9 @@ Starter code given by Instructor
 Stacy Herbert
 
 ## Images
-
+<img src="assets/images/category-crud.png" width="300" alt text="Category CRUD"/>
+<img src="assets/images/product-by-id.png" width="300" alt text="Category CRUD"/>
+<img src="assets/images/tag-crud.png" width="300" alt text="Category CRUD"/>
 
 # _______________________________________________________________________________________
 
@@ -37,3 +39,4 @@ Stacy Herbert
 https://github.com/JLH-Owner/e-commerce-orm.git
 
 ## Live Demo: 
+https://drive.google.com/file/d/1RAo78nCHifK6elShCsQvbSUL6CdHOCfG/view?usp=sharing

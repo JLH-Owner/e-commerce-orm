@@ -8,14 +8,14 @@ const seedProducts = require('../../seeds/product-seeds');
 router.get('/', async (req, res) => {
   // find all categories
   try {
-  const categoryData = await Category.findAll({
+    const categoryData = await Category.findAll({
   // include Products
     include: [{ model: Product }],
   });
-  res.status(200).json(categoryData);
+    res.status(200).json(categoryData);
   } catch (err) {
-  res.status(500).json(err);
-  }
+    res.status(500).json(err);
+    }
 });
 
 router.get('/:id', async (req, res) => {
@@ -23,7 +23,7 @@ router.get('/:id', async (req, res) => {
   // be sure to include its associated Products
   try {
     const categoryData = await Category.findByPk(req.params.id, {
-      include: [{ model: Product }],
+    include: [{ model: Product }],
     });
 
     if (!categoryData) {
@@ -41,28 +41,42 @@ router.post('/', async (req, res) => {
   // create a new category
   try {
     const categoryData = await Category.create({
-      product_id: req.body.product_id,
-    });
+      category_name: req.body.category_name,
+      });
     res.status(200).json(categoryData);
   } catch (err) {
     res.status(400).json(err);
   }
 });
 
-router.put('/:id', (req, res) => {
+router.put('/:id', async (req, res) => {
   // update a category by its `id` value
-  Category.update(
-    {
-      // All the fields you can update and the data attached to the request body.
-      category_name: req.body.category_name,
-    },
-    {
-      // Gets a book based on the book_id given in the request parameters
+  try {
+    const categoryData = await Category.update(req.body, {
       where: {
-        category_id: req.params.category_id,
+        id: req.params.id,
       },
+    });
+    if (!categoryData[0]) {
+      res.status(404).json({ message: 'No Category with that id!' });
+      return;
     }
-  )
+    res.status(200).json(categoryData);
+  } catch (err) {
+    res.status(500).json(err);
+  } 
+ Category.update(
+   {
+     // All the fields you can update and the data attached to the request body.
+     category_name: req.body.category_name,
+   },
+   {
+     // Gets a category based on the category_id given in the request parameters
+     where: {
+       category_id: req.params.category_id,
+     },
+   }
+ )
     .then((updatedCategory) => {
       res.json(updatedCategory);
     })

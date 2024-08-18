@@ -46,6 +46,17 @@ router.post('/', async (req, res) => {
     stock: 3,
     tagIds: [1, 2, 3, 4],
     } */
+    try {
+      const productData = await Product.create({
+        product_name: req.body.product_name,
+        price: req.body.price,
+        stock: req.body.stock,
+        tagIds: req.body.tag_ids,
+      });
+      res.status(200).json(productData);
+    } catch (err) {
+      res.status(500).json(err);
+    }
     
 
   Product.create(req.body)
@@ -69,6 +80,7 @@ router.post('/', async (req, res) => {
       res.status(400).json(err);
     });
   });
+
 
 // update product
 router.put('/:id', (req, res) => {
